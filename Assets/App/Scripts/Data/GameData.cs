@@ -7,6 +7,11 @@ public class GameData : System.Object {
     // key - the ID to be used to look up a particular record
     // value - the data placed into a record that is tied to a unique id
 
+    /*
+    public GameData() {
+        this.SetScore("Level 1", new Score(100, System.DateTime.Now));
+    } */
+
     /// <summary>
     /// Sets the score for a particular level.
     /// </summary>
@@ -31,6 +36,16 @@ public class GameData : System.Object {
         return false;
     }
 
+    /// <summary>
+    /// Gets the score based on the level name.
+    /// </summary>
+    /// <param name="levelName"></param>
+    /// <returns></returns>
+    public Score GetScore(string levelName) {
+        if (this.scores.ContainsKey(levelName) == false) return null;
+
+        return this.scores[levelName];
+    }
 }
 
 public class Score : System.Object {

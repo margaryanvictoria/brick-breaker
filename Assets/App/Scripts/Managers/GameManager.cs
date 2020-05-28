@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     private int brickCount = 0;
 
     private void Start() {
+        Time.timeScale = 1.0F; // Normal time . . .
         //fill our array of all the objects we can find in the level, of type Brick
         this.bricks = Object.FindObjectsOfType<Brick>();
 
@@ -47,15 +48,21 @@ public class GameManager : MonoBehaviour {
         AddToScore(2);
         
         if(this.brickCount <= 0) {
-            Debug.Log("Nice, you won!");
-            PlayerPrefs.SetInt("Level 1", this.score); // current session . . .
-            // attempt to store the highest score for the long term
-            DataManager.GameData.SetScore("Level 1", new Score(this.score, System.DateTime.Now));
-
-            var asset = Resources.Load<GameOver>("Game Over");
-            var clone = GameObject.Instantiate(asset.gameObject);
-            //var gameOver = clone.GetComponent<GameOver>(); //unneeded
+            this.OnGameOver();
         }
+    }
+
+    private void OnGameOver() {
+        Debug.Log("Nice, you won!");
+        PlayerPrefs.SetInt("Level 1", this.score); // current session . . .
+         // attempt to store the highest score for the long term
+        DataManager.GameData.SetScore("Level 1", new Score(this.score, System.DateTime.Now));
+
+        var asset = Resources.Load<GameOver>("Game Over");
+        var clone = GameObject.Instantiate(asset.gameObject);
+        //var gameOver = clone.GetComponent<GameOver>(); //unneeded
+
+        Time.timeScale = 0.001f; // Slow down/Pause . . .
     }
 
     private void AddToScore(int amount) {

@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+//using Newtonsoft.Json;
 
+[System.Serializable] // Class decorator, (Attribute) class attribute
+[DataContract]
 public class GameData : System.Object {
+    //[JsonPropertyAttribute]
+    [DataMember]
     private Dictionary<string, Score> scores = new Dictionary<string, Score>();
     // <key, value>
     // key - the ID to be used to look up a particular record

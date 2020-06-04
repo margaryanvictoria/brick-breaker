@@ -13,9 +13,10 @@ public class GameOver : MonoBehaviour {
         var score = gameData.GetScore("Level 1");
 
         if (score != null) {
-            this.score.text = "Score: " + PlayerPrefs.GetInt("Level 1"); // the current session . . .
-            this.best.text = "Best: " + score.Value; // persistent session data . . .
+            this.best.text = "Best Score: " + score.Value; // persistent session data . . .
         }
+
+        this.score.text = "Score: " + PlayerPrefs.GetInt("Level 1"); // the current session . . .
 
         //this.onRetry.onClick.AddListener(this.OnRetry); //etc etc
     }
@@ -27,5 +28,6 @@ public class GameOver : MonoBehaviour {
 
     public void OnQuit() {
         Debug.Log("OnQuit request.");
+        SceneManager.LoadScene("Main");
     }
 }

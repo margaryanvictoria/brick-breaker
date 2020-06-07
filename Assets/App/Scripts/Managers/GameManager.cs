@@ -70,4 +70,8 @@ public class GameManager : MonoBehaviour {
         this.score += amount;
         GameManager.onScoreUpdated?.Invoke(this.score);
     }
+
+    private void OnDestroy() {
+        Time.timeScale = 1.0f;
+    }
 }

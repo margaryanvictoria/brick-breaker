@@ -6,9 +6,46 @@ using System.Runtime.Serialization;
 [System.Serializable] // Class decorator, (Attribute) class attribute
 [DataContract]
 public class GameData : System.Object {
+    static readonly string[] LEVELS_UNLOCKED = new string[] { "Level 1" };
+
     //[JsonPropertyAttribute]
     [DataMember]
     private Dictionary<string, Score> scores = new Dictionary<string, Score>();
+    [DataMember]
+    private List<string> levelsUnlocked = new List<string>();  // Hold the levels that are unlocked by the player . . .
+
+    /// <summary>
+    /// Ensure the integrity data is good . . .
+    /// </summary>
+    public void Validate() {
+        this.ValidateLevels();
+    }
+
+    /// <summary>
+    /// Ensure the levels we want the user to start off with unlocked are indeed unlocked . . .
+    /// </summary>
+    private void ValidateLevels() {
+        //this.levelsUnlocked.Add("Level 1"); // Initialize the first level to be unlocked, or else, how does the player play . . .
+        for(int i=0; i < GameData.LEVELS_UNLOCKED.Length; ++i) {
+            var level = GameData.LEVELS_UNLOCKED[i];
+
+            if(this.levelsUnlocked.Contains(level) == false) {
+                this.levelsUnlocked.Add(level);
+            }
+        }
+    }
+
+    public IReadOnlyList<string> LevelsUnlocked {
+        get {
+            return this.levelsUnlocked;
+        }
+    }
+
+    public void UnlockLevel(string levelName) {
+        // You should make sure this level exists . . .
+        this.levelsUnlocked.Add(levelName);
+    }
+
     // <key, value>
     // key - the ID to be used to look up a particular record
     // value - the data placed into a record that is tied to a unique id

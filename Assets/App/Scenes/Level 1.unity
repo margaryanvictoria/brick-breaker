@@ -792,6 +792,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brick
       objectReference: {fileID: 0}
+    - target: {fileID: 7972533655107595607, guid: 5c50ebb5706fff449a3f2ce689663454,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c50ebb5706fff449a3f2ce689663454, type: 3}
 --- !u!1 &995030899
@@ -1439,7 +1444,7 @@ PrefabInstance:
     - target: {fileID: 4202772421451630330, guid: 7cffaa3d289433c449a7ab7abc89e08e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5562445809070646518, guid: 7cffaa3d289433c449a7ab7abc89e08e,
         type: 3}
@@ -1649,9 +1654,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 36
-  m_CollisionDetection: 2
+  m_CollisionDetection: 3
 --- !u!114 &1574187839
 MonoBehaviour:
   m_ObjectHideFlags: 0

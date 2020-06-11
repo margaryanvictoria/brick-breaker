@@ -23,11 +23,23 @@ public class UILevelData : MonoBehaviour {
         }
 
         var button = this.GetComponent<Button>();
+        button.interactable = false;
 
-        button.onClick.AddListener(() => {
-            SceneManager.LoadScene(levelData.Name);
+        var iterator = DataManager.GameData.LevelsUnlocked.GetEnumerator();
+
+        while (iterator.MoveNext()) {
+            var levelName = iterator.Current;
+
+            if(string.Compare(levelData.Name, levelName) == 0) {
+                button.interactable = true;
+
+                button.onClick.AddListener(() => {
+                    SceneManager.LoadScene(levelData.Name);
+                });
+
+                break;
+            }
         }
-        );
     }
 
 }

@@ -15,3 +15,16 @@ MonoBehaviour:
   levels:
   - name: Level 1
     icon: {fileID: 21300000, guid: de2dbb82581271844a902b394ea789b4, type: 3}
+    nextLevel: Level 2
+  - name: Level 2
+    icon: {fileID: 21300000, guid: 82ac1068190573449a2a4982fc53a40a, type: 3}
+    nextLevel: Level 3
+  - name: Level 3
+    icon: {fileID: 21300000, guid: 1e9dad456fa24ac499341355cf13db1f, type: 3}
+    nextLevel: Level 4
+  - name: Level 4
+    icon: {fileID: 21300000, guid: f272b7b20e85c5b449a1502b33e7f83e, type: 3}
+    nextLevel: Level 5
+  - name: Level 5
+    icon: {fileID: 21300000, guid: 03f713d66c2b1a545a1928d5e11f722b, type: 3}
+    nextLevel: 

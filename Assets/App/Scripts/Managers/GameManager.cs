@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public static event System.Action<int> onScoreUpdated;
@@ -54,9 +55,25 @@ public class GameManager : MonoBehaviour {
 
     private void OnGameOver() {
         Debug.Log("Nice, you won!");
-        PlayerPrefs.SetInt("Level 1", this.score); // current session . . .
+
+        #region Score Logic...
+        //PlayerPrefs.SetInt("Level 1", this.score); // current session . . .
+        PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, this.score);
         // attempt to store the highest score for the long term
-        DataManager.GameData.SetScore("Level 1", new Score(this.score, System.DateTime.Now));
+        //DataManager.GameData.SetScore("Level 1", new Score(this.score, System.DateTime.Now));
+        DataManager.GameData.SetScore(SceneManager.GetActiveScene().name, new Score(this.score, System.DateTime.Now));
+        #endregion
+
+        #region Unlock Level Logic...
+        var levelData = LevelDatabase.Instance.GetLevelData(SceneManager.GetActiveScene().name);
+
+        if (levelData != null) {
+            if (string.IsNullOrEmpty(levelData.NextLevel) == false) {
+                DataManager.GameData.UnlockLevel(levelData.NextLevel);
+            }
+        }
+        #endregion
+
         DataManager.SaveGameData();
 
         var asset = Resources.Load<GameOver>("Game Over");

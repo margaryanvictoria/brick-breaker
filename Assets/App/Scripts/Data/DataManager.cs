@@ -2,7 +2,7 @@
 using Newtonsoft.Json; // this is how we will serialize to JSON . . .
 using System.IO;
 
-public class DataManager : Singleton<DataManager> {
+public class DataManager : MonoSingleton<DataManager> {
     private GameData gameData = null;
     
     public static GameData GameData {
@@ -15,6 +15,8 @@ public class DataManager : Singleton<DataManager> {
                 // load it from disc . . .
                 //DataManager.Instance.gameData = new GameData();
                 DataManager.LoadGameData();
+
+                DataManager.Instance.gameData.Validate();
             }
 
             return DataManager.Instance.gameData;

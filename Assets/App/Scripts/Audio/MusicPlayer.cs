@@ -4,7 +4,7 @@ using System.Collections;
 // This forces the MusicPlayer component to also have attached to it
 // an AudioSource component . . .
 [RequireComponent(typeof(AudioSource))]
-public class MusicPlayer : Singleton<MusicPlayer> {
+public class MusicPlayer : MonoSingleton<MusicPlayer> {
     private AudioSource current;
     private AudioSource next;
     //public AudioSource temp;
